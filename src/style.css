@@ -1,0 +1,40 @@
+.react-checkbox-container {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border: 1px #000;
+    padding:20px;
+}
+
+.react-checkbox-tree {
+    display:block;
+}
+  
+.react-checkbox-tree .treenode-switcher {
+    display:inline-block;
+}  
+  
+.react-checkbox-tree label {
+    font-size: 24px;
+    font-family:Arial, Helvetica, sans-serif;
+    user-select: none;
+    margin-bottom: 15px;
+}
+  
+/* Create a custom checkbox */
+.react-checkbox-tree input[type="checkbox"] {
+    margin: 4px 8px 0 0;
+    border-radius: 0;
+    height:20px;
+    width:20px;
+}
+
+.react-checkbox-tree span.carrot-side {
+    display:inline-block;
+    -webkit-transform:rotate(-90deg);
+    transform:rotate(-90deg);
+}
+
+.react-checkbox-tree span.carrot-down {
+    display:inline-block;
+    -webkit-transform:rotate(0deg);
+    transform:rotate(0deg);
+}
