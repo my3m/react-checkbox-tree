@@ -48,10 +48,35 @@ export default class App extends React.Component {
         super();
         this.handleOnClick = this.handleOnClick.bind(this);
         this.handleOnExpanded = this.handleOnExpanded.bind(this);
+        this.getNodeFromId = this.getNodeFromId.bind(this);
+        this.scanNodes = this.scanNodes.bind(this);
         this.state = {
             selected: {},
             expanded: {}
         }
+        this.addressMap = {};
+        this.scanNodes(root);
+        console.log(this.addressMap);
+    }
+
+    scanNodes(children, prefix=[]) {
+        let currentPrefix = this.addressMap;
+        children.forEach((c, idx) => {
+            currentPrefix[c.id] = [...prefix || [], idx];
+            if(c.children) {
+                this.scanNodes(c.children, currentPrefix[c.id]);
+            }
+        });
+    }
+
+    getNodeFromId(id) {
+        let address = [...this.addressMap[id]];
+        let node = root[address[0]];
+        address.splice(0,1);
+        while(address.length > 0) {
+            node = node.children[address.splice(0, 1)];
+        }
+        return node;
     }
 
     handleOnClick(options, id) {
