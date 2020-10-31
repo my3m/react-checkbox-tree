@@ -31,7 +31,7 @@ export default class TreeNode extends React.Component {
         const carrotClass = this.props.expanded ? 'carrot-down' : "carrot-side";
         const displayCarrot = this.props.children && this.props.children.length > 0;
         return (
-            <div class="react-checkbox-tree">
+            <div className="react-checkbox-tree">
                 <span
                     className={`${carrotClass}`}
                     onClick={this.handleOnExpanded}
@@ -57,7 +57,7 @@ export default class TreeNode extends React.Component {
                     className="form-check-input"
                     checked={this.props.selected}
                     onClick={this.handleOnClick} readOnly />
-                <label htmlFor={`{checkbox-${this.props.id}`} class="checkbox-text form-check-label">{this.props.text}</label>
+                <label htmlFor={`{checkbox-${this.props.id}`} className="checkbox-text form-check-label">{this.props.text}</label>
                 {this.renderChildren()}                
             </div>
         )

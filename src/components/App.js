@@ -80,10 +80,32 @@ export default class App extends React.Component {
     }
 
     handleOnClick(options, id) {
-        console.log(`id: ${id}`);
-        this.setState({
-            selected: options
+        //console.log(`id: ${id}`);
+        let node = this.getNodeFromId(id);
+        console.log(node);
+        let optionsAll = {...this.state.selected};
+        this.doActionForAllChildren(node, (n)=> {
+            optionsAll[n.id] = options[id];
         });
+        this.setState({
+            selected: optionsAll
+        });
+    }
+
+    doActionForAllChildren(node, func) {
+        if(!(func instanceof Function)) {
+            throw new Error("Second argument must be a function type!");
+        }
+        let queue = [node];
+        while(queue.length > 0) {
+            let n = queue.pop();
+            func(n);
+            if(n.children) {
+                n.children.forEach((c)=> {
+                    queue.push(c);
+                });
+            }
+        }
     }
 
     handleOnExpanded(options, id) {
